@@ -1,12 +1,33 @@
 import { ImageCard } from '../ImageCard/ImageCard';
-export const ImageGallery = ({ items }) => {
+import css from './ImageGallery.module.css';
+
+export const ImageGallery = ({ images }) => {
   return (
-    <ul>
-      {items.map(item => (
-        <li key={item.id}>
-          <ImageCard item={item} />
-        </li>
-      ))}
+    <ul className={css.list}>
+      {images.map(
+        ({
+          id,
+          alt_description,
+          urls,
+          color,
+          likes,
+          description,
+          user: { location, name, instagram_username },
+        }) => (
+          <li key={id}>
+            <ImageCard
+              color={color}
+              alt={alt_description}
+              urls={urls}
+              numberOfLikes={likes}
+              title={description}
+              location={location}
+              photographer={name}
+              instagramId={instagram_username}
+            />
+          </li>
+        )
+      )}
     </ul>
   );
 };

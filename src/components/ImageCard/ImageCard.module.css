@@ -1,8 +1,47 @@
-.card {
-  cursor: pointer;
+:root {
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
+}
+
+.photoCard {
+  padding: 7px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  border-radius: 5%;
+  transition: transform var(--animation-duration);
   height: 100%;
-  background-color: var(--color-light);
-  border: 4px solid #fff;
-  border-radius: 16px;
-  overflow: hidden;
+  max-width: 400px;
+}
+
+@media screen and (min-width: 768px) {
+  .photoCard {
+    /* height: 210px; */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 6px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .photoCard {
+    padding: 5px;
+  }
+}
+.photoCard:active {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-regular);
+}
+@media (hover: hover) {
+  .photoCard:hover,
+  .photoCard:focus {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-regular);
+  }
+}
+
+.img {
+  border-radius: 5%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0 auto;
 }

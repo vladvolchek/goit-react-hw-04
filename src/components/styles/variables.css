@@ -1,0 +1,51 @@
+:root {
+
+  --color-darkviolet: #270545;
+  --color-form: #9a39efd8;
+  --color-violet: #450e76;
+  --color-mainBackground: linear-gradient(to bottom, #d1b3ec, rgba(239, 210, 157, 0.653));
+
+
+  --font-small: 26px;
+  --font-medium: 40px;
+  --font-large: 45px;
+
+ 
+  --shadow-regular: 0px 3px 3px 1px #9e9e9e;
+  --shadow-small: 0px 2px 2px rgba(0, 0, 0, 0.4);
+
+
+  --animation-cubicBezier: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+
+.go4109123758 {
+  backdrop-filter: blur(10px) !important;
+  margin-top: 43px !important;
+}
+.go2072408551 {
+  color: black !important;
+}
+
+@media screen and (min-width: 768px) {
+  .go4109123758 {
+    margin-top: 50px !important;
+  }
+  .go685806154 {
+    scale: 1.6;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .go4109123758 {
+    margin-top: 54px !important;
+  }
+  .go685806154 {
+    scale: 2;
+    margin-right: 10px;
+  }
+}
+
+
+body.ReactModal__Body--open {
+  overflow: hidden;
+}

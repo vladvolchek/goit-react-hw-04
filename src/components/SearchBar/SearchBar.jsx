@@ -1,36 +1,39 @@
-import toast from 'react-hot-toast';
+import { useState } from 'react';
 import css from './SearchBar.module.css';
-import { FiSearch } from 'react-icons/fi';
+import { MdOutlineImageSearch } from 'react-icons/md';
 
-export const SearchBar = ({ onSearch }) => {
+export const SearchBar = ({ onSubmit }) => {
+  const [query, setQuery] = useState('');
+
+  const handleChange = ({ target: { value } }) => {
+    setQuery(value);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (e.target.elements.query.value.trim() === '') {
-      toast.error('Empty string!');
-
-      return;
-    }
-
-    onSearch(e.target.elements.query.value);
-    e.target.reset();
+    onSubmit(query);
+    setQuery('');
   };
 
   return (
     <header>
-      <form className={css.form} onSubmit={handleSubmit}>
-        <button className={css.btn} type="submit">
-          <FiSearch size="20px" />
-        </button>
-        <input
-          className={css.input}
-          type="text"
-          name="query"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-      </form>
+      <div className={css.container}>
+        <form className={css.form} onSubmit={handleSubmit}>
+          <input
+            className={css.input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            name="search"
+            value={query}
+            onChange={handleChange}
+          />
+          <button className={css.button} type="submit">
+            <MdOutlineImageSearch className={css.svg} size="30px" />
+          </button>
+        </form>
+      </div>
     </header>
   );
 };
