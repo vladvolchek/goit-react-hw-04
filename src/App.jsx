@@ -10,6 +10,7 @@ import css from './components/ErrorMessage/ErrorMessage.module.css';
 import style from './components/Loader/Loader.module.css';
 
 function App() {
+  
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
@@ -84,7 +85,9 @@ function App() {
         }}
       />
     </div>
+    
   );
+  
 }
 
 export default App;

@@ -20,10 +20,10 @@ export const ImageCard = ({
     <div>
       <div
         className={css.photoCard}
-        onClick={toggle}
+       
         style={{ backgroundColor: color, borderColor: color }}
       >
-        <img className={css.img} src={urls.small} alt={alt} />
+        <img className={css.img} src={urls.small} alt={alt} onClick={toggle}/>
       </div>
       <ImageModal
         alt={alt}
