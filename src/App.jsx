@@ -8,8 +8,10 @@ import { Loader } from './components/Loader/Loader';
 import { ErrorMessage } from './components/ErrorMessage/ErrorMessage';
 import css from './components/ErrorMessage/ErrorMessage.module.css';
 import style from './components/Loader/Loader.module.css';
+import { ImageModal } from './components/ImageModal/ImageModal';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
@@ -19,7 +21,18 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [emptyInput, setEmptyInput] = useState(false);
+  const [imageinfo, setImageInfo] = useState(null);
+  const onOpenModal = () => {
+    setShowModal(true);
+  };
+  const onCloseModal = () => {
+    setShowModal(false);
+  };
+  const getImageInfo = (imageinfo) => {
+    setImageInfo(imageinfo)
+    onOpenModal();
 
+  }
   const handleSubmit = async newQuery => {
     if (!newQuery.trim()) {
       setEmptyInput(true);
@@ -66,7 +79,7 @@ function App() {
   return (
     <div>
       <SearchBar onSubmit={handleSubmit} />
-      {images.length > 0 && <ImageGallery images={images} />}
+      {images.length > 0 && <ImageGallery images={images} getImageInfo = {getImageInfo} />}
       {emptyInput && <ErrorMessage>Please enter text to search images.</ErrorMessage>}
       {emptyResults && <ErrorMessage>There are no images 😭</ErrorMessage>}
       {isLoading ? (
@@ -75,6 +88,19 @@ function App() {
         visibleBtn && <LoadMoreBtn onClick={handleLoadMore} />
       )}
       {error && <ErrorMessage>{error}</ErrorMessage>}
+      { imageinfo &&
+        <ImageModal
+          alt={imageinfo.alt}
+          urls={imageinfo.urls}
+          modalIsOpen={showModal}
+          closeModal={onCloseModal}
+          color={imageinfo.color}
+          likes={imageinfo.numberOfLikes}
+          descriptions={imageinfo.title}
+          location={imageinfo.location}
+          photographerName={imageinfo.photographer}
+          instId={imageinfo.instagramId}
+        />}
       <Toaster
         containerStyle={{
           left: 0,

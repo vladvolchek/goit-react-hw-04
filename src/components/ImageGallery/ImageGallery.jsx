@@ -1,7 +1,7 @@
 import { ImageCard } from '../ImageCard/ImageCard';
 import css from './ImageGallery.module.css';
 
-export const ImageGallery = ({ images }) => {
+export const ImageGallery = ({ images, getImageInfo }) => {
   return (
     <ul className={css.list}>
       {images.map(
@@ -16,6 +16,7 @@ export const ImageGallery = ({ images }) => {
         }) => (
           <li key={id}>
             <ImageCard
+              getImageInfo = {getImageInfo}
               color={color}
               alt={alt_description}
               urls={urls}

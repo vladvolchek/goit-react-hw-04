@@ -1,25 +1,9 @@
 import { useState } from 'react';
 import css from './SearchBar.module.css';
 import { MdOutlineImageSearch } from 'react-icons/md';
-import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
-export const ErrorMessage = ({ children }) => {
-  useEffect(() => {
-   
-    const timeoutId = setTimeout(() => {
-      toast.error(children, {
-        duration: 2000,
-      });
-    }, 0);
 
-   
-    return () => clearTimeout(timeoutId);
-  }, [children]);
-
-  
-  return null;
-};
 export const SearchBar = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
@@ -29,6 +13,10 @@ export const SearchBar = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!query) {
+      toast.error("enter some text!")
+      return
+    }
     onSubmit(query);
     setQuery('');
     
